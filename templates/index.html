@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+<!-- -->
+
+{% block linkedData %} {% set image =
+resize_image(path='../assets/me/frank-hampus-weslien.jpeg', width=200,
+height=200, op="fit") %}
+<meta name="twitter:card" content="summary" />
+<meta property="og:url" content="{{ current_url }}" />
+<meta property="og:title" content="Frank Hampus Weslien" />
+<meta
+  property="og:description"
+  content="Building software in the open, for money!"
+/>
+<meta property="og:image" content="{{ image.url }}" />
+<meta property="og:image:alt" content="Frank Hampus Weslien" />
+
+<script id="me" type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@id": "https://frankhampusweslien.com#me",
+    "@type": "Person",
+    "name": "Frank Hampus Weslien",
+    "gender": { "@id": "schema:Male" }
+  }
+</script>
+{% endblock linkedData %} {% block content %}
+
+<img class="headshoot" src="{{ image.url }}" />
+
+<div class="text-container">{{ section.content | safe }}</div>
+{% endblock content %}

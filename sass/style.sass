@@ -1,0 +1,292 @@
+// Color
+$black-color: #000
+$accent-color: #f2b125
+$not-important-color: #434343
+//font
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 700
+  src: url(./fonts/JetBrainsMono-Bold.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 700
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-BoldItalic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 800
+  src: url(./fonts/JetBrainsMono-ExtraBold.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 800
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-ExtraBoldItalic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 200
+  src: url(./fonts/JetBrainsMono-ExtraLight.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 200
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-ExtraLightItalic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-Italic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 300
+  src: url(./fonts/JetBrainsMono-Light.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 300
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-LightItalic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 500
+  src: url(./fonts/JetBrainsMono-Medium.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 500
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-MediumItalic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 400
+  src: url(./fonts/JetBrainsMono-Regular.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 600
+  src: url(./fonts/JetBrainsMono-SemiBold.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 600
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-SemiBoldItalic.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 100
+  src: url(./fonts/JetBrainsMono-Thin.woff2)
+
+@font-face
+  font-family: JetBrainsMono
+  font-weight: 100
+  font-style: italic
+  src: url(./fonts/JetBrainsMono-ThinItalic.woff2)
+
+strong
+  font-weight: bold
+
+$font-stack: JetBrainsMono, sans-serif
+
+$font-4xl: 3.052rem
+$font-3xl: 2.441rem
+$font-2xl: 1.953rem
+$font-xl: 1.563rem
+$font-lg: 1.25rem
+$font-md: 1rem
+$font-sm: 0.8rem
+$font-xs: 0.64rem
+$font-2xs: 0.512rem
+
+//space
+$space-3xs: 2px
+$space-2xs: 4px
+$space-xs: 8px
+$space-sm: 12px
+$space-md: 20px
+$space-lg: 32px
+$space-xl: 52px
+$space-2xl: 84px
+
+// Breakpoints
+
+$break-small: 640px
+
+// Base
+td, th
+  padding: 0 8px
+
+body
+  font: 100% $font-stack
+  color: $black-color
+  font-size: 16px
+  max-width: 1200px
+  margin: auto
+  padding-left: $space-lg
+  padding-right: $space-lg
+
+.container
+  max-width: 800px
+  margin: auto
+
+.logo
+  margin: auto
+  display: block
+
+.header
+  box-sizing: border-box
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  margin: $space-sm
+  width: 100%
+  align-items: baseline
+  @media (max-width: $break-small)
+    flex-direction: column
+
+  .header-left
+    @media (max-width: $break-small)
+      margin-bottom: $space-sm
+
+  .header-title
+    margin-right: $space-lg
+    font-size: $font-2xl
+
+    @media (max-width: $break-small)
+      margin-right: $space-sm
+      font-size: $font-xl
+  .header-links
+    font-size: $font-lg
+    @media (orientation: portrait)
+      display: flex
+      flex-direction: column
+      a
+        margin-bottom: $space-sm
+a
+  color: $black-color
+  text-decoration-color: $accent-color
+  text-decoration-thickness: 2px
+
+.section
+  margin-top: $space-2xl
+  margin-bottom: $space-2xl
+
+.social-link
+  text-decoration: none
+
+h1
+  font-size: $font-4xl
+h2
+  font-size: $font-3xl
+h3
+  font-size: $font-2xl
+h4
+  font-size: $font-xl
+h5
+  font-size: $font-xl
+h6
+  font-size: $font-lg
+// Index
+
+.text-container
+  margin: auto
+  max-width: 800px
+
+.center
+  display: inline-grid
+  place-items: center
+
+// Title
+
+.title
+  font-size: $font-2xl
+  .title-dot
+    color: $accent-color
+
+// Index
+.headshoot
+  border-radius: 50%
+  margin: auto
+  display: block
+
+// Blog
+
+.blog
+  margin-left: $space-md
+
+.blog-post
+  width: 100%
+  margin-bottom: $space-2xl
+  .blog-post-header
+    margin-bottom: $space-sm
+    font-size: $font-2xl
+    span
+      color: $accent-color
+    a
+      text-underline-offset: $space-2xs
+
+  .blog-post-metadata
+    width: 100%
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+    color: $not-important-color
+
+// Posts
+
+.post-metadata
+  width: 100%
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+  color: $not-important-color
+
+// Curriculum Vitea
+
+.cv-h4,
+  margin-top: $space-md
+  margin-bottom: $space-xs
+
+.cv-h5
+  margin-top: $space-xs
+  margin-bottom: $space-2xs
+
+.cv-h4-container
+  padding-left: $space-md
+
+.cv-h5-container
+  padding-left: $space-xs
+
+.cv-sub-title, .cv-period
+  margin: 0
+
+.cv-period
+  font-size: $font-sm
+  color: $not-important-color
+
+// Projects
+
+.all-project-container
+  gap: $space-lg
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
+
+.project-container
+  display: inline-grid
+  place-items: start center
+
+.project-name
+  margin: 0
+
+.project-description
+  color: $not-important-color
+  text-align: center

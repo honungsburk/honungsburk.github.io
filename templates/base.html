@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ get_url(path='/apple-touch-icon.png') | safe }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ get_url(path='/favicon-32x32.png') | safe }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ get_url(path='/favicon-16x16.png') | safe }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ get_url(path='/site.webmanifest') | safe }}"
+    />
+    <link
+      rel="mask-icon"
+      href="{{ get_url(path='/safari-pinned-tab.svg') | safe }}"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Twitter ID of the website -->
+    {#
+    <meta name="twitter:site:id" content="@HampusFrank" />
+    #}
+    <!-- Creator -of the content (For articles) -->
+
+    <meta property="og:site_name" content="Frank Hampus Weslien" />
+    {% block linkedData %} {% endblock %}
+
+    <meta charset="utf-8" />
+    <title>Frank Hampus Weslien</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="{{ get_url(path='style.css') | safe }}" />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="header-left">
+        <a class="header-title" href="{{ get_url(path='./') | safe }}">
+          Frank Hampus Weslien</a
+        >
+        <a
+          href="https://www.youtube.com/channel/UC6fuoBfK8_B_cT35aKuJEgg"
+          class="social-link"
+          target="_blank"
+        >
+          <img
+            width="24"
+            src="{{ get_url(path='icons/youtube.svg') | safe }}"
+          />
+        </a>
+        <a
+          href="https://www.instagram.com/frankhampusweslien/"
+          class="social-link"
+          target="_blank"
+        >
+          <img
+            width="24"
+            src="{{ get_url(path='icons/instagram.svg') | safe }}"
+          />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/frank-hampus-weslien-b81b59197/"
+          class="social-link"
+          target="_blank"
+        >
+          <img
+            width="24"
+            src="{{ get_url(path='icons/linkedin.svg') | safe }}"
+          />
+        </a>
+        <a
+          href="https://twitter.com/HampusFrank"
+          class="social-link"
+          target="_blank"
+        >
+          <img
+            width="24"
+            src="{{ get_url(path='icons/twitter.svg') | safe }}"
+          />
+        </a>
+        <a
+          href="https://github.com/honungsburk"
+          class="social-link"
+          target="_blank"
+        >
+          <img width="24" src="{{ get_url(path='icons/github.svg') | safe }}" />
+        </a>
+        <a href="/atom.xml" class="social-link" target="_blank">
+          <img width="24" src="{{ get_url(path='icons/rss.svg') | safe }}" />
+        </a>
+      </div>
+      <div class="header-links">
+        <a href="{{ get_url(path='@/posts/_index.md') }}">/posts</a>
+        <a href="{{ get_url(path='@/projects/_index.md') }}">/projects</a>
+        <a href="{{ get_url(path='@/curriculum-vitae/_index.md') }}">/cv</a>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        {% block header %} {% endblock %} {% block content %} {% endblock %}
+      </div>
+    </section>
+  </body>
+</html>

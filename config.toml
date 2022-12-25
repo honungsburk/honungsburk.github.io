@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://honungsburk.github.io"
+base_url = "https://frankhampusweslien.com"
 
 # The site title and description; used in feeds by default.
 description = "My personal website"

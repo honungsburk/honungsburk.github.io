@@ -11,7 +11,7 @@ twitterAuthorID = "@HampusFrank"
 description = "Creating a company is hard. This is what I learned."
 +++
 
-Hello people of the internet!
+Hello, people of the internet!
 
 This is the third iteration of my website.
 I wanted to put a larger focus on my open-source contributions so there is now

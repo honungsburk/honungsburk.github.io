@@ -1,9 +1,9 @@
 # The URL the site will be built for
-base_url = "https://Mirror-Labs.github.io"
+base_url = "https://honungsburk.github.io"
 
 # The site title and description; used in feeds by default.
-description = "We are building a local-first database with superpowers!"
-title = "MirrorLabs"
+description = "My personal website"
+title = "Frank Hampus Weslien"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true

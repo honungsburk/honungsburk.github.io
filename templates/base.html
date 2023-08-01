@@ -22,11 +22,13 @@
       rel="manifest"
       href="{{ get_url(path='/site.webmanifest') | safe }}"
     />
+    {#
     <link
       rel="mask-icon"
       href="{{ get_url(path='/safari-pinned-tab.svg') | safe }}"
       color="#5bbad5"
     />
+    #}
     <meta name="msapplication-TileColor" content="#000000" />
     <meta name="theme-color" content="#ffffff" />
 
@@ -48,62 +50,77 @@
     <link rel="stylesheet" href="{{ get_url(path='style.css') | safe }}" />
   </head>
 
+  {% set logo = resize_image(path='../assets/logos/honungsburk-logo.png',
+  width=64, height=64, op="fit") %}
+
   <body>
     <div class="header">
       <div class="header-left">
         <a class="header-title" href="{{ get_url(path='./') | safe }}">
           Frank Hampus Weslien</a
         >
-        <a
-          href="https://www.youtube.com/channel/UC6fuoBfK8_B_cT35aKuJEgg"
-          class="social-link"
-          target="_blank"
-        >
-          <img
-            width="24"
-            src="{{ get_url(path='icons/youtube.svg') | safe }}"
-          />
+
+        {#
+        <a href="{{ get_url(path='./') | safe }}">
+          <img class="personal-logo" src="{{ logo.url }}" />
         </a>
-        <a
-          href="https://www.instagram.com/frankhampusweslien/"
-          class="social-link"
-          target="_blank"
-        >
-          <img
-            width="24"
-            src="{{ get_url(path='icons/instagram.svg') | safe }}"
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/frank-hampus-weslien-b81b59197/"
-          class="social-link"
-          target="_blank"
-        >
-          <img
-            width="24"
-            src="{{ get_url(path='icons/linkedin.svg') | safe }}"
-          />
-        </a>
-        <a
-          href="https://twitter.com/HampusFrank"
-          class="social-link"
-          target="_blank"
-        >
-          <img
-            width="24"
-            src="{{ get_url(path='icons/twitter.svg') | safe }}"
-          />
-        </a>
-        <a
-          href="https://github.com/honungsburk"
-          class="social-link"
-          target="_blank"
-        >
-          <img width="24" src="{{ get_url(path='icons/github.svg') | safe }}" />
-        </a>
-        <a href="/atom.xml" class="social-link" target="_blank">
-          <img width="24" src="{{ get_url(path='icons/rss.svg') | safe }}" />
-        </a>
+        #}
+
+        <div class="header-socal-links">
+          <a
+            href="https://www.youtube.com/channel/UC6fuoBfK8_B_cT35aKuJEgg"
+            class="social-link"
+            target="_blank"
+          >
+            <img
+              width="24"
+              src="{{ get_url(path='icons/youtube.svg') | safe }}"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/frankhampusweslien/"
+            class="social-link"
+            target="_blank"
+          >
+            <img
+              width="24"
+              src="{{ get_url(path='icons/instagram.svg') | safe }}"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/frank-hampus-weslien-b81b59197/"
+            class="social-link"
+            target="_blank"
+          >
+            <img
+              width="24"
+              src="{{ get_url(path='icons/linkedin.svg') | safe }}"
+            />
+          </a>
+          <a
+            href="https://twitter.com/HampusFrank"
+            class="social-link"
+            target="_blank"
+          >
+            <img
+              width="24"
+              src="{{ get_url(path='icons/twitter.svg') | safe }}"
+            />
+          </a>
+          <a
+            href="https://github.com/honungsburk"
+            class="social-link"
+            target="_blank"
+          >
+            <img
+              width="24"
+              src="{{ get_url(path='icons/github.svg') | safe }}"
+            />
+          </a>
+          <a href="/atom.xml" class="social-link" target="_blank">
+            <img width="24" src="{{ get_url(path='icons/rss.svg') | safe }}" />
+          </a>
+        </div>
       </div>
       <div class="header-links">
         <a href="{{ get_url(path='@/posts/_index.md') }}">/posts</a>

@@ -117,6 +117,7 @@ $space-2xl: 84px
 
 // Breakpoints
 
+$break-large: 1024px
 $break-small: 640px
 
 // Base
@@ -152,6 +153,12 @@ body
     flex-direction: column
 
   .header-left
+    display: flex
+    flex-direction: row
+    align-items: baseline
+    @media (max-width: $break-large)
+      flex-direction: column
+
     @media (max-width: $break-small)
       margin-bottom: $space-sm
 
@@ -159,9 +166,13 @@ body
     margin-right: $space-lg
     font-size: $font-2xl
 
+    @media (max-width: $break-large)
+      margin-bottom: $font-xs
+
     @media (max-width: $break-small)
       margin-right: $space-sm
       font-size: $font-xl
+
   .header-links
     font-size: $font-lg
     @media (orientation: portrait)

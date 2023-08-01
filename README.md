@@ -28,7 +28,7 @@ We use JetBrains Mono for that great programmer _feel_.
 ### Icons
 
 We use Feather for this project. If you need an icon that has not been added
-simply navigate to [their [website](https://feathericons.com/) and download it!
+simply navigate to their [website](https://feathericons.com/) and download it!
 
 ### Sass
 

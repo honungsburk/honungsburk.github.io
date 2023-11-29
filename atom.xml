@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Frank Hampus Weslien</title>
+    <subtitle>My personal website</subtitle>
+    <link href="https://frankhampusweslien.com/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://frankhampusweslien.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2022-12-25T00:00:00+00:00</updated>
+    <id>https://frankhampusweslien.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>My new website</title>
+        <published>2022-12-25T00:00:00+00:00</published>
+        <updated>2022-12-25T00:00:00+00:00</updated>
+        <author>
+          <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://frankhampusweslien.com/posts/my-new-website/" type="text/html"/>
+        <id>https://frankhampusweslien.com/posts/my-new-website/</id>
+        
+        <content type="html">&lt;p&gt;Hello, people of the internet!&lt;&#x2F;p&gt;
+&lt;p&gt;This is the third iteration of my website.
+I wanted to put a larger focus on my open-source contributions so there is now
+a &lt;a href=&quot;&#x2F;projects&quot;&gt;projects&lt;&#x2F;a&gt; tab. You’ll find all the NFTs I minted and sold in 2021 at
+&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;nft.frankhampusweslien.com&#x2F;&quot;&gt;https:&#x2F;&#x2F;nft.frankhampusweslien.com&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;Cheers&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

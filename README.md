@@ -14,6 +14,13 @@ Follow the [instructions](https://www.getzola.org/documentation/getting-started/
 
 Get instant refresh using `zola serve`.
 
+Note: It appears that the site becomes unavailable after deployment. Thus for
+all I've had to do are the following steps:
+
+1. Go to [settings page for this repo](https://github.com/honungsburk/honungsburk.github.io/settings)
+2. Click on the [Pages tab](https://github.com/honungsburk/honungsburk.github.io/settings/pages)
+3. Under Custom domain write "frankhampusweslien.com" and click Save.
+
 ### Deployment
 
 Whenever changes get committed to the `master` branch it triggers a Github action

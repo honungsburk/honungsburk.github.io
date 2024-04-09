@@ -13,7 +13,7 @@ description = "I'm about to release a game on steam!"
 
 Hello, people of the internet!
 
-I'm in the midest of releasing a game on Steam called [GLOW](https://store.steampowered.com/app/2896110/GLOW/). Here is the description directly from the Steam page:
+I'm in the middle of releasing a game on Steam called [GLOW](https://store.steampowered.com/app/2896110/GLOW/). Here is the description directly from the Steam page:
 
 > "_GLOW is an addictive physics-based arcade game that will challenge you to your limits. Push, dodge, and trick enemies while collecting points as the difficulty increases._"
 

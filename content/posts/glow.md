@@ -29,11 +29,11 @@ Here are some of the current pros and cons of using bevy:
   - Open-source
 - Cons:
   - Documentation
-- The community is small but very helpful
-- Tutorials are scarce
-- Compile times
-- Unstable API
-- UI is hard
+  - The community is small but very helpful
+  - Tutorials are scarce
+  - Compile times
+  - Unstable API
+  - UI is hard
 
 The main pain points for me have been that Bevy currently has a very lackluster UI system as of `0.13.1`. I know there are plans to improve this in the future but for now, it's a bit of a pain to work with. I'm also losing a lot of time due to lack of hot reloading but that is partly my fault. They recommend not using the release flag in development. Though, since my game is rather simple it hasn't been a deal breaker. Most of the time I make rather large changes in which case you do not compile that often anyway.
 

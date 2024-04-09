@@ -21,6 +21,8 @@ all I've had to do are the following steps:
 2. Click on the [pages tab](https://github.com/honungsburk/honungsburk.github.io/settings/pages)
 3. Under Custom domain write "frankhampusweslien.com" and click Save.
 
+[solution!](https://github.com/orgs/community/discussions/22366)
+
 ### Deployment
 
 Whenever changes get committed to the `master` branch it triggers a Github action

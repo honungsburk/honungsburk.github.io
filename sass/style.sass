@@ -141,6 +141,10 @@ body
   margin: auto
   display: block
 
+.logo-link
+  display: inline-block
+  width: fit-content
+
 .header
   box-sizing: border-box
   display: flex
@@ -155,19 +159,18 @@ body
   .header-left
     display: flex
     flex-direction: row
+    column-gap: $space-lg
     align-items: baseline
-    @media (max-width: $break-large)
-      flex-direction: column
 
     @media (max-width: $break-small)
       margin-bottom: $space-sm
 
   .header-title
-    margin-right: $space-lg
     font-size: $font-2xl
 
     @media (max-width: $break-large)
       margin-bottom: $font-xs
+      display: none
 
     @media (max-width: $break-small)
       margin-right: $space-sm

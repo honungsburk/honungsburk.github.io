@@ -3,12 +3,12 @@ title = "My new website"
 date = 2022-12-25
 
 [extra]
-modified = 2022-12-25
+modified = 2024-04-09
 tags = ["startup"]
 authorURL = "https://frankhampusweslien.com/"
 author = "Frank Hampus Weslien"
 twitterAuthorID = "@HampusFrank"
-description = "Creating a company is hard. This is what I learned."
+description = "New Website!"
 +++
 
 Hello, people of the internet!

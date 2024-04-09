@@ -51,20 +51,20 @@
   </head>
 
   {% set logo = resize_image(path='../assets/logos/honungsburk-logo.png',
-  width=64, height=64, op="fit") %}
+  width=32, height=32, op="fit") %}
 
   <body>
     <div class="header">
       <div class="header-left">
-        <a class="header-title" href="{{ get_url(path='./') | safe }}">
-          Frank Hampus Weslien</a
-        >
-
-        {#
-        <a href="{{ get_url(path='./') | safe }}">
-          <img class="personal-logo" src="{{ logo.url }}" />
-        </a>
-        #}
+        <div>
+            <a href="{{ get_url(path='./') | safe }}"  class="logo-link">
+              <img class="personal-logo" src="{{ logo.url }}" />
+            </a>
+          </a>
+          <a class="header-title" href="{{ get_url(path='./') | safe }}">
+            Frank Hampus Weslien
+          </a>
+        </div>
 
         <div class="header-socal-links">
           <a

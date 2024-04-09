@@ -41,8 +41,8 @@ The biggest boons for me have been the speed of the engine and the fact that it'
 
 On a personal note, I've noticed that I'm gravitating towards tools that are code first. Bevy doesn't have an editor, instead, everything is written in code. Of course, some things are better done in an editor but programming is my main skill so I'm happy to see this trend.
 Instead of learning how to use an editor I can reuse my programming skills.
-A few other tools that are also code-first are [Manim](https://www.manim.community/), [Motion Canvas](https://motioncanvas.io/), and [glicol](https://glicol.org/).
-Here is an example of YouTube short I made about [9-slicing images](https://www.youtube.com/shorts/fVKpYgH_Nz0) made with Motion Canvas.
+A few other tools that are also code-first are [Manim](https://www.manim.community/), [Motion Canvas](https://motioncanvas.io/), and [Glicol](https://glicol.org/).
+Here is an example of a YouTube short I made about [9-slicing images](https://www.youtube.com/shorts/fVKpYgH_Nz0) made with Motion Canvas.
 
 I'm excited to see where this trend will take us! In the meantime, I hope you will check out my game [GLOW](https://store.steampowered.com/app/2896110/GLOW/) on Steam.
 

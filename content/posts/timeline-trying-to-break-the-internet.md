@@ -4,7 +4,7 @@ date = 2024-04-09
 
 [extra]
 modified = 2024-04-09
-tags = ["game", "project"]
+tags = ["game", "project", "web", "timeline"]
 authorURL = "https://frankhampusweslien.com/"
 author = "Frank Hampus Weslien"
 twitterAuthorID = "@HampusFrank"

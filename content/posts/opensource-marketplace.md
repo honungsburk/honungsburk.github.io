@@ -4,9 +4,9 @@ date = 2024-06-15
 
 [extra]
 modified = 2024-06-15
-tags = ["open-source", "chatgpt"]
+tags = ["open-source"]
 authorURL = "https://frankhampusweslien.com/"
-author = "Frank Hampus Weslien & ChatGPT"
+author = "Frank Hampus Weslien"
 twitterAuthorID = "@HampusFrank"
 description = "Could we solve open-source sustainability by reimagining package managers?"
 +++

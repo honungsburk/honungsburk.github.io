@@ -1,9 +1,9 @@
 +++
 title = "Be a creator"
-date = 2024-09-21
+date = 2024-07-21
 
 [extra]
-modified = 2024-04-11
+modified = 2024-07-21
 tags = ["life"]
 authorURL = "https://frankhampusweslien.com/"
 author = "Frank Hampus Weslien"

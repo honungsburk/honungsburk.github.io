@@ -17,7 +17,7 @@ My creative journey began at 20 when I realized that I was in control.
 If I want to eat pancakes every day, I can; I just choose not to.
 Initially, I procrastinated, and it was difficult to pick up the habit of creation.
 My GitHub is filled with unfinished projects from my university days, but as my skills grew and the hours piled up, I managed to ignite the fire of creation.
-At first, it was weak and easily extinguished, but as I fueled it by dedicated an hour each day to painting, it became strong.
+At first, it was weak and easily extinguished, but as I fueled it by dedicating an hour each day to painting, it became strong.
 Very strong. I've recently learned to have a bucket of water on hand to prevent it from spreading uncontrollably.
 
 Creation brings lasting satisfaction, especially when shared. Cooking and baking are perfect for this and a fantastic opportunity to bring friends and family together. It also lets them give you compliments; nothing is more motivating. Creative things that double as gifts hold a special place in my heart. I'm not a fan of a gift culture built on consumerism and I'm easily bribed with homemade cookies.

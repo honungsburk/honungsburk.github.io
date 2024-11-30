@@ -4,7 +4,7 @@ date = 2024-04-11
 
 [extra]
 modified = 2024-04-11
-tags = ["life", "health"]
+tags = ["life", "health", "opinion"]
 authorURL = "https://frankhampusweslien.com/"
 author = "Frank Hampus Weslien"
 twitterAuthorID = "@HampusFrank"

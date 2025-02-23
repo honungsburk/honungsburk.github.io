@@ -1,5 +1,5 @@
 +++
-title = "The Secret to Wake Up Well Rested"
+title = "The Secret to Waking Up Well Rested"
 date = 2025-02-16
 
 [extra]
@@ -8,7 +8,7 @@ tags = ["health"]
 authorURL = "https://frankhampusweslien.com/"
 author = "Frank Hampus Weslien"
 twitterAuthorID = "@HampusFrank"
-description = "The secret to wake up well rested."
+description = "The secret to waking up well rested."
 +++
 
 I won't drag this out: the secret is to not have an alarm.

@@ -52,8 +52,8 @@ Fast code is good, but maintainable code is better. Optimize when it actually ma
 ### 12. Are they similar or are they the same?
 Not all duplication is bad. Only share code when changing one part means you must change the other.
 
-### 13. The Rule of ThreeIf 
-you see a pattern once, ignore it. Twice? Keep an eye on it. Three times? Now it’s time to refactor.
+### 13. The Rule of Three
+If you see a pattern once, ignore it. Twice? Keep an eye on it. Three times? Now it’s time to refactor.
 
 ### 14. Refactor as you go
 Bad code gets written. The trick is to not leave it bad. Refactoring a little at a time prevents big rewrites later.

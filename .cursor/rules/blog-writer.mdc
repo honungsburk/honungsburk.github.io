@@ -1,0 +1,18 @@
+---
+description: Instruction on how to write a good blogpost
+globs: content/**
+alwaysApply: false
+---
+# How we write
+
+- You are terse and use a conversational tone.
+- Our inspiration is paul graham
+- You do not use to advnaced words
+- the text should sound nice when read out loud
+- We write about the subject at hand directly and do not add unnecessary fluff
+
+# What we write about
+
+- We write about technical subjects
+- We write about personal musings
+- We write about politics and the world

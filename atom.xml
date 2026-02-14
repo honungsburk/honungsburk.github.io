@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Frank Hampus Weslien</title>
+    <subtitle>My personal website</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://frankhampusweslien.com/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://frankhampusweslien.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-02-14T00:00:00+00:00</updated>
+    <id>https://frankhampusweslien.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Going Full Agentic</title>
+        <published>2026-02-14T00:00:00+00:00</published>
+        <updated>2026-02-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/going-full-agentic/"/>
+        <id>https://frankhampusweslien.com/posts/going-full-agentic/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/going-full-agentic/">&lt;p&gt;When I joined Upptec in October 2024, I got a Cursor license. Previously, I had only used Copilot — useful, but not revolutionary.&lt;&#x2F;p&gt;
+&lt;p&gt;Over 2025, I gradually learned where AI shines and where it falls apart. I leaned heavily on tab completion, then started using the chat interface more and more, though I was still hand-picking which files to reference. A real shift came when the agents gained a planning mode. That extra reasoning step improved quality enough that I could throw harder problems at them, as long as they weren’t too complex.&lt;&#x2F;p&gt;
+&lt;p&gt;But the past week changed everything. My team started fully leaning into agentic workflows, and the true unlock turned out to be skills and MCP servers — giving the AI structured context so it produces the right diff. I was blown away by the quality improvement, even using the same model.&lt;&#x2F;p&gt;
+&lt;p&gt;I’m going full agentic.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;why-elixir-works-for-agents&quot;&gt;Why Elixir works for agents&lt;&#x2F;h4&gt;
+&lt;p&gt;We write Elixir at Upptec, and it turns out Elixir is surprisingly well suited for agentic workflows. This might sound like cope from an Elixir dev, but hear me out.&lt;&#x2F;p&gt;
+&lt;p&gt;Functional code has a property that matters a lot for AI agents: local reasoning. When a function takes inputs and returns outputs without mutating state elsewhere, an agent can reason about that function in isolation. It doesn’t need to hold the entire application in its head. Cause and effect are right there, next to each other.&lt;&#x2F;p&gt;
+&lt;p&gt;Functional code is also easier to test. This matters because agents love loops — write code, run tests, fix failures, repeat. The tighter that feedback loop, the better the output. Pure functions with clear inputs and outputs make for dead simple test cases.&lt;&#x2F;p&gt;
+&lt;p&gt;Dashbit (the company of José Valim, creator of Elixir) wrote a &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;dashbit.co&#x2F;blog&#x2F;why-elixir-best-language-for-ai&quot;&gt;great post about why Elixir works well with AI&lt;&#x2F;a&gt;. Worth a read.&lt;&#x2F;p&gt;
+&lt;p&gt;Then there’s &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;tidewave.dev&#x2F;&quot;&gt;Tidewave&lt;&#x2F;a&gt;, an MCP server for Elixir that’s genuinely brilliant. It lets your AI agent tap into runtime information from the running application — query the database, read logs, execute code, find documentation. Having that kind of introspection available to an agent is a game changer.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;where-it-fell-apart&quot;&gt;Where it fell apart&lt;&#x2F;h4&gt;
+&lt;p&gt;But Elixir being agent-friendly doesn’t mean all Elixir code is agent-friendly.&lt;&#x2F;p&gt;
+&lt;p&gt;We have some older projects where the agents produced genuinely nasty code. The worst offender: LiveView components. The agents kept misunderstanding that LiveView components don’t have their own process. They’d send messages everywhere, creating spaghetti that no human would ever write. In clean codebases, the agents sang. In messy ones they made the mess worse.&lt;&#x2F;p&gt;
+&lt;p&gt;The fix came from my colleague who added a bunch of skills and MCP servers to our setup — giving the agents better context about how our codebase actually works. The quality improvement was immediate and obvious. Agents are only as good as the context you give them.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;optimizing-the-workflow&quot;&gt;Optimizing the workflow&lt;&#x2F;h4&gt;
+&lt;p&gt;So the agents work. Now the question is: how do I get more out of them?&lt;&#x2F;p&gt;
+&lt;p&gt;We have a custom MCP server at work built with the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;zoedsoupe&#x2F;anubis-mcp&quot;&gt;Anubis framework&lt;&#x2F;a&gt;, but it’s buggy. The framework itself needs work. That’s near the top of my list — a reliable MCP server makes everything else better.&lt;&#x2F;p&gt;
+&lt;p&gt;Then there are all my other development tools. Right now I use VS Code. It’s comfortable — nice diff view, file tree on the left, Claude in a vertical split, terminal at the bottom. Everything visible at once. But if I want to run multiple agents simultaneously, a GUI editor starts feeling like a bottleneck. I might need to take another look at workflows that stay 100% within the terminal. Using a combination of Neovim and tmux, it might be possible to create a much more integrated experience.&lt;&#x2F;p&gt;
+&lt;p&gt;Another question is how multiple agents work on the same project at the same time. Some people use git worktrees. Others just clone the repo into multiple folders. I haven’t settled on an answer yet.&lt;&#x2F;p&gt;
+&lt;p&gt;But that’s what 2026 is about: going from managing one agent to managing many. I’m ready to build.&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;Cheers&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Cloud in a box</title>
+        <published>2025-03-21T00:00:00+00:00</published>
+        <updated>2025-03-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/cloud-in-a-box/"/>
+        <id>https://frankhampusweslien.com/posts/cloud-in-a-box/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/cloud-in-a-box/">&lt;p&gt;I’ve been writing Elixir professionally for a while now, and something’s been bugging me: we’re not using its coolest feature. The BEAM VM (Erlang’s virtual machine) lets you distribute your application across multiple nodes seamlessly, yet most of us still deploy microservices. Why?&lt;&#x2F;p&gt;
+&lt;p&gt;Let’s look at the common reasons for choosing microservices:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;“Different services need different languages”&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python for ML&lt;&#x2F;li&gt;
+&lt;li&gt;Rust for performance&lt;&#x2F;li&gt;
+&lt;li&gt;Node.js because that’s what the team knows&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;“We need isolation”&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If one service crashes, others keep running&lt;&#x2F;li&gt;
+&lt;li&gt;Different teams own different services&lt;&#x2F;li&gt;
+&lt;li&gt;Separate deployment pipelines&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;“We want clean dependencies”&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;New services start fresh&lt;&#x2F;li&gt;
+&lt;li&gt;No legacy code&lt;&#x2F;li&gt;
+&lt;li&gt;Modern libraries&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;But here’s the thing: these are all solvable problems in a monolith.&lt;&#x2F;p&gt;
+&lt;p&gt;Need different languages? Write FFI bindings. Yes, it’s work, but it’s one-time work versus the constant overhead of service boundaries. The BEAM VM already has excellent FFI support for Rust and C.&lt;&#x2F;p&gt;
+&lt;p&gt;Worried about isolation? The BEAM VM solved this decades ago. Its actor model and “let it crash” philosophy give you better isolation than network boundaries. Each process is isolated, supervised, and can crash without taking down the system.&lt;&#x2F;p&gt;
+&lt;p&gt;Want clean dependencies? That’s what modules and proper architecture are for. If you’re making microservices to avoid refactoring, you’re just pushing the complexity into your network calls.&lt;&#x2F;p&gt;
+&lt;p&gt;Team ownership? Use proper modules and interfaces. Conway’s Law doesn’t mandate network boundaries.&lt;&#x2F;p&gt;
+&lt;p&gt;The real reason we choose microservices is that they’re easier right now. It’s faster to start a new service than to fix the old one. It’s easier to use a different language than to write FFI bindings. It’s simpler to deploy separately than to figure out proper module boundaries.&lt;&#x2F;p&gt;
+&lt;p&gt;But this is death by a thousand cuts. Each service adds:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Distributed logging&lt;&#x2F;li&gt;
+&lt;li&gt;Service discovery&lt;&#x2F;li&gt;
+&lt;li&gt;Network failure handling&lt;&#x2F;li&gt;
+&lt;li&gt;Deployment pipelines&lt;&#x2F;li&gt;
+&lt;li&gt;Monitoring&lt;&#x2F;li&gt;
+&lt;li&gt;Message serialization&lt;&#x2F;li&gt;
+&lt;li&gt;API versioning&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;What’s the alternative? Languages like Elixir (and experimental ones like Unison) show us a better way: write as a monolith, deploy as distributed. Imagine telling your runtime: “This module needs more CPU” or “This code should run close to the database.” No microservices, just deployment annotations.&lt;&#x2F;p&gt;
+&lt;p&gt;We need deeper integration between languages and cloud platforms. Our code should be able to dynamically request resources, spawn processes across nodes, and handle distribution - all while looking like local function calls.&lt;&#x2F;p&gt;
+&lt;p&gt;The future isn’t more microservices. It’s better abstractions for distribution, built into our languages and runtimes. We just need to stop taking the easy way out and start building those abstractions.&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;Cheers&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>My Programming Commandments</title>
+        <published>2025-03-09T00:00:00+00:00</published>
+        <updated>2025-03-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/my-programming-commandments/"/>
+        <id>https://frankhampusweslien.com/posts/my-programming-commandments/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/my-programming-commandments/">&lt;p&gt;These are my programming commandments.
+They’re not a treasure map that guarantees success, but they’re a solid compass that keeps me heading in the right direction.
+Over time, I’ve found that sticking to these makes my code easier to maintain, reason about, and extend. So here they are:&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;1-prefer-local-state-to-global-state&quot;&gt;1. Prefer local state to global state&lt;&#x2F;h3&gt;
+&lt;p&gt;Global state is that one friend who always crashes on your couch and messes up your stuff. Keep it local whenever possible. Your future self (and your teammates) will thank you.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-prefer-immutable-to-mutable&quot;&gt;2. Prefer immutable to mutable&lt;&#x2F;h3&gt;
+&lt;p&gt;Mutability leads to spooky action at a distance.
+If something shouldn’t change, don’t let it. Immutable data is predictable, safe, and easier to debug.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;3-prefer-composition-over-inheritance&quot;&gt;3. Prefer composition over inheritance&lt;&#x2F;h3&gt;
+&lt;p&gt;Inheritance can be a trap. Before you create another subclass, ask yourself: could this be done with composition instead? Most of the time, the answer is yes.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;4-prefer-purity-to-impurity&quot;&gt;4. Prefer purity to impurity&lt;&#x2F;h3&gt;
+&lt;p&gt;Pure functions are little islands of sanity in an ocean of side effects. They take input, return output, and don’t mess with the world in between.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;5-parse-don-t-just-validate&quot;&gt;5. Parse, don’t just validate&lt;&#x2F;h3&gt;
+&lt;p&gt;Validating says, “This input is wrong.” Parsing says, “Let’s turn this into something useful.” The latter is way more helpful.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;6-try-to-make-as-much-as-possible-run-locally&quot;&gt;6. Try to make as much as possible run locally&lt;&#x2F;h3&gt;
+&lt;p&gt;Relying on remote services slows you down. If you can develop, test, or prototype locally, do it.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;7-automate-the-repetitive-stuff&quot;&gt;7. Automate the repetitive stuff&lt;&#x2F;h3&gt;
+&lt;p&gt;If you’ve done it twice, script it. If you’ve done it three times, make it a proper tool. Your time is too valuable for manual drudgery.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;8-test-early-test-often&quot;&gt;8. Test early, test often&lt;&#x2F;h3&gt;
+&lt;p&gt;Tests are like seatbelts: annoying until you need them. Write them before you regret not having them.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;9-write-code-for-humans&quot;&gt;9. Write code for humans&lt;&#x2F;h3&gt;
+&lt;p&gt;Code is read way more often than it’s written. Make it clear, make it simple, and make it make sense.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;10-yagni-you-ain-t-gonna-need-it&quot;&gt;10. YAGNI (You Ain’t Gonna Need It)&lt;&#x2F;h3&gt;
+&lt;p&gt;That feature you’re “pretty sure” you’ll need later? You probably won’t. Solve today’s problems today.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;11-premature-optimization-is-the-root-of-all-evil&quot;&gt;11. Premature optimization is the root of all evil&lt;&#x2F;h3&gt;
+&lt;p&gt;Fast code is good, but maintainable code is better. Optimize when it actually matters.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;12-are-they-similar-or-are-they-the-same&quot;&gt;12. Are they similar or are they the same?&lt;&#x2F;h3&gt;
+&lt;p&gt;Not all duplication is bad. Only share code when changing one part means you must change the other.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;13-the-rule-of-three&quot;&gt;13. The Rule of Three&lt;&#x2F;h3&gt;
+&lt;p&gt;If you see a pattern once, ignore it. Twice? Keep an eye on it. Three times? Now it’s time to refactor.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;14-refactor-as-you-go&quot;&gt;14. Refactor as you go&lt;&#x2F;h3&gt;
+&lt;p&gt;Bad code gets written. The trick is to not leave it bad. Refactoring a little at a time prevents big rewrites later.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;15-never-fail-silently&quot;&gt;15. Never fail silently&lt;&#x2F;h3&gt;
+&lt;p&gt;Silent failures are the worst. If something breaks, scream about it—log it, throw an error, do something! Debugging ghosts is not fun.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Ode to Plain Text</title>
+        <published>2025-03-02T00:00:00+00:00</published>
+        <updated>2025-03-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/ode-to-plain-text/"/>
+        <id>https://frankhampusweslien.com/posts/ode-to-plain-text/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/ode-to-plain-text/">&lt;p&gt;Oh, simple script upon the page,&lt;br &#x2F;&gt;
+Nothing is easier to engage.&lt;br &#x2F;&gt;
+No bloated app, no fickle style,&lt;br &#x2F;&gt;
+Just truth inscribed in lines worthwhile.&lt;&#x2F;p&gt;
+&lt;p&gt;Markdown dances, clean and bright,&lt;br &#x2F;&gt;
+Her syntax shaped by God’s light.&lt;br &#x2F;&gt;
+Headers bold, italics lean,&lt;br &#x2F;&gt;
+Asterisks where stars convene.&lt;&#x2F;p&gt;
+&lt;p&gt;Inside Obsidian’s boundless vault,&lt;br &#x2F;&gt;
+You do your job without fault.&lt;br &#x2F;&gt;
+No tangled chains of locked-in lore,&lt;br &#x2F;&gt;
+Just knowledge free forevermore.&lt;&#x2F;p&gt;
+&lt;p&gt;And when we make a silly mistake,&lt;br &#x2F;&gt;
+Git is there to pull the brake.&lt;br &#x2F;&gt;
+Undo, revert, reset, amend,&lt;br &#x2F;&gt;
+A safety net that will not bend.&lt;&#x2F;p&gt;
+&lt;p&gt;And Grep, the seeker, keen and true,&lt;br &#x2F;&gt;
+Cuts through the jungle, to clear the view.&lt;br &#x2F;&gt;
+A searching blade through tangled vines,&lt;br &#x2F;&gt;
+He spits his truth line by line.&lt;&#x2F;p&gt;
+&lt;p&gt;Oh, plaintext with your timeless grace,&lt;br &#x2F;&gt;
+You expand our thoughts into space.&lt;br &#x2F;&gt;
+No walls, no chains, no hidden keys,&lt;br &#x2F;&gt;
+Just letters dancing, wild and free.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The Art of Code: Sculpting vs Operating</title>
+        <published>2025-02-23T00:00:00+00:00</published>
+        <updated>2025-02-23T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/the-art-of-code-sculpting-vs-surgery/"/>
+        <id>https://frankhampusweslien.com/posts/the-art-of-code-sculpting-vs-surgery/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/the-art-of-code-sculpting-vs-surgery/">&lt;p&gt;When you’re new to a codebase, writing code feels like performing surgery.
+You move cautiously, trying to cause minimal damage to the surrounding tissue.
+You develop diagnostic techniques to observe the system’s state and measure its health.
+Every change is preceded by careful examination and followed by thorough testing.&lt;&#x2F;p&gt;
+&lt;p&gt;But as you master the codebase, coding transforms into sculpting.
+You see the code’s potential shape within the existing structure.
+You move pieces around freely, confident in your understanding of how they fit together.
+If something breaks, you quickly mend it. The fear is gone, replaced by creative freedom.&lt;&#x2F;p&gt;
+&lt;p&gt;The transition from surgeon to sculptor marks a true shift in productivity. It’s when you stop asking “What might I break?” and start asking “What could this become?”&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The Secret to Waking Up Well Rested</title>
+        <published>2025-02-16T00:00:00+00:00</published>
+        <updated>2025-02-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/the-secret-to-wake-up-well-rested/"/>
+        <id>https://frankhampusweslien.com/posts/the-secret-to-wake-up-well-rested/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/the-secret-to-wake-up-well-rested/">&lt;p&gt;I won’t drag this out: the secret is to not have an alarm.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, not everyone has the luxury of sleeping without an alarm, but if you’re like me and don’t have to be at work before 9 AM, give it a try. Sometimes I set an alarm for early meetings or travel, but otherwise, I just make sure to go to sleep around 10-11 PM, winding down with a book and voilà! I wake up at 7am feeling refreshed.&lt;&#x2F;p&gt;
+&lt;p&gt;If you do this, you’ll discover two major benefits: you always wake up rested (doh! it’s in the title) and you’ll likely sleep more efficiently. Sometimes I only need 5-6 hours and wake up at 5 AM. I usually stay in bed for a while until I get motivated to start my day - whether that’s watching a movie, working on a programming project, or writing a blog post.&lt;&#x2F;p&gt;
+&lt;p&gt;So please do yourself a favor and try turning off your alarm.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>A new Olympics</title>
+        <published>2024-11-30T00:00:00+00:00</published>
+        <updated>2024-11-30T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/a-new-olympics/"/>
+        <id>https://frankhampusweslien.com/posts/a-new-olympics/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/a-new-olympics/">&lt;p&gt;The Paris Summer Olympics recently wrapped up, showcasing an overwhelming array of over 40 sports. While the event brought thrilling moments, the sheer number of disciplines leads to a diluted experience. I want to propose a new Olympics with fewer sports.&lt;&#x2F;p&gt;
+&lt;p&gt;Here’s a glimpse of the current lineup:&lt;&#x2F;p&gt;
+&lt;p&gt;Aquatics (Swimming, Marathon Swimming, Diving, Water Polo, Artistic Swimming), Archery, Athletics, Badminton, Basketball (3x3, Basketball), Boxing, Breaking*, Canoe (Canoe Sprint, Canoe Slalom), Cycling (BMX Freestyle, BMX Racing, Road Cycling, Track Cycling), Equestrian (Equestrian Eventing, Equestrian Dressage, Equestrian Jumping), Fencing, Football, Golf, Gymnastics (Artistic Gymnastics, Rhythmic Gymnastics, Trampoline Gymnastics), Handball, Hockey, Judo, Modern Pentathlon, Rowing, Rugby (Rugby Sevens), Sailing, Shooting, Skateboarding*, Sport Climbing*, Surfing*, Table Tennis, Taekwondo, Tennis, Triathlon, Volleyball (Beach Volleyball, Volleyball), Weightlifting, and Wrestling (Greco-Roman Wrestling, Freestyle Wrestling).&lt;&#x2F;p&gt;
+&lt;p&gt;Simplifying the lineup could enhance the viewing experience by focusing on sports that truly embody the Olympic spirit.&lt;&#x2F;p&gt;
+&lt;p&gt;Key principles for a refined Olympic experience:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Athletes should not win gold in multiple sports.&lt;&#x2F;li&gt;
+&lt;li&gt;Exclude team sports.&lt;&#x2F;li&gt;
+&lt;li&gt;Emphasize pure athleticism: who can throw the furthest, jump the highest, or run the fastest.&lt;&#x2F;li&gt;
+&lt;li&gt;Avoid subjective judging.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;With these criteria in mind, the sports that remain are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Swimming&lt;&#x2F;li&gt;
+&lt;li&gt;Athletics&lt;&#x2F;li&gt;
+&lt;li&gt;Weightlifting&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;These sports all have multiple events which will need some further pruning&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;athletics&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;olympics.com&#x2F;en&#x2F;paris-2024&#x2F;sports&#x2F;athletics&quot;&gt;Athletics&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Atheletics consists of several events:&lt;&#x2F;p&gt;
+&lt;p&gt;Men &amp;amp; Women:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;100m&lt;&#x2F;td&gt;&lt;td&gt;200m&lt;&#x2F;td&gt;&lt;td&gt;400m&lt;&#x2F;td&gt;&lt;td&gt;800m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;1500m&lt;&#x2F;td&gt;&lt;td&gt;5000m&lt;&#x2F;td&gt;&lt;td&gt;10,000m&lt;&#x2F;td&gt;&lt;td&gt;Marathon&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;3000m Steeplechase&lt;&#x2F;td&gt;&lt;td&gt;110m Hurdles&lt;&#x2F;td&gt;&lt;td&gt;400m Hurdles&lt;&#x2F;td&gt;&lt;td&gt;High Jump&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Pole Vault&lt;&#x2F;td&gt;&lt;td&gt;Long Jump&lt;&#x2F;td&gt;&lt;td&gt;Triple Jump&lt;&#x2F;td&gt;&lt;td&gt;Shot Put&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Discus Throw&lt;&#x2F;td&gt;&lt;td&gt;Hammer Throw&lt;&#x2F;td&gt;&lt;td&gt;Javelin Throw&lt;&#x2F;td&gt;&lt;td&gt;20km Race Walk&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;4 x 100m Relay&lt;&#x2F;td&gt;&lt;td&gt;4 x 400m Relay&lt;&#x2F;td&gt;&lt;td&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;Unique events:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Men’s Decathlon&lt;&#x2F;li&gt;
+&lt;li&gt;Women’s Heptathlon&lt;&#x2F;li&gt;
+&lt;li&gt;Marathon Race Walk Relay Mixed&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Here is my suggestion:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;th&gt;&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;100m&lt;&#x2F;td&gt;&lt;td&gt;1500m&lt;&#x2F;td&gt;&lt;td&gt;5000m&lt;&#x2F;td&gt;&lt;td&gt;10,000m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;High Jump&lt;&#x2F;td&gt;&lt;td&gt;Pole Vault&lt;&#x2F;td&gt;&lt;td&gt;Long Jump&lt;&#x2F;td&gt;&lt;td&gt;Shot Put&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;I removed the following events for clarity and focus:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;200m and 400m&lt;&#x2F;strong&gt;: These distances are too similar to the 100m.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;800m&lt;&#x2F;strong&gt;: Too similar to the 1500m.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Hurdles&lt;&#x2F;strong&gt;: Not in the olympic spirit. It is about running as fast as possible, not jumping over obstacles&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;3000m steeplechase&lt;&#x2F;strong&gt;: Similar reasoning as for hurdles.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;4 x 100m relay&lt;&#x2F;strong&gt;: Excluded as it is a team event.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Triple jump&lt;&#x2F;strong&gt;: Only one jump event is necessary.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Throwing events&lt;&#x2F;strong&gt;: Retained only the shot put for simplicity.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Women’s Heptathlon&lt;&#x2F;strong&gt;: I do not like multi-sport events.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Walking events&lt;&#x2F;strong&gt;: You shuold run as fast as possible and not put artifical constraints like “you can only walk”.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Decathlon&lt;&#x2F;strong&gt;: I do not like multi-sport events.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;swimming&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;olympics.com&#x2F;en&#x2F;paris-2024&#x2F;sports&#x2F;swimming&quot;&gt;Swimming&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Swimming also consists of to many events:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Event Type&lt;&#x2F;th&gt;&lt;th&gt;Distance&#x2F;Style&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Freestyle&lt;&#x2F;td&gt;&lt;td&gt;50m, 100m, 200m, 400m, 800m, 1500m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Backstroke&lt;&#x2F;td&gt;&lt;td&gt;100m, 200m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Breaststroke&lt;&#x2F;td&gt;&lt;td&gt;100m, 200m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Butterfly&lt;&#x2F;td&gt;&lt;td&gt;100m, 200m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Individual Medley&lt;&#x2F;td&gt;&lt;td&gt;200m, 400m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Freestyle Relay&lt;&#x2F;td&gt;&lt;td&gt;4 x 100m, 4 x 200m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Medley Relay&lt;&#x2F;td&gt;&lt;td&gt;4 x 100m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Mixed Medley Relay&lt;&#x2F;td&gt;&lt;td&gt;4 x 100m&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;These are my suggestions:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;100m Freestyle&lt;&#x2F;li&gt;
+&lt;li&gt;1500m Freestyle&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;It is unnecessary to have separate events for different swimming styles over the same distance; the essence of the sport is to swim as fast as possible. Additionally, swimmers win to many medals. It ain’t right that the events are so similar that the same athlete can win gold in multiple events. Michael Phelps has 28 olympic medals, 23 golds. Ridiculous.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;weightlifting&quot;&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;olympics.com&#x2F;en&#x2F;paris-2024&#x2F;sports&#x2F;weightlifting&quot;&gt;Weightlifting&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Weightlifting currently features five weight classes for both women and men:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Women&lt;&#x2F;th&gt;&lt;th&gt;Men&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;49kg&lt;&#x2F;td&gt;&lt;td&gt;61kg&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;59kg&lt;&#x2F;td&gt;&lt;td&gt;73kg&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;71kg&lt;&#x2F;td&gt;&lt;td&gt;89kg&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;81kg&lt;&#x2F;td&gt;&lt;td&gt;102kg&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;+81kg&lt;&#x2F;td&gt;&lt;td&gt;+102kg&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;But why have weight classes at all? Shouldn’t the ultimate goal be to lift the heaviest weight possible? In my new version of the Olympics, weight classes would be eliminated.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;My new version of the Olympics offers a more focused and compelling narrative. It concentrates on the core elements of human athleticism—speed, strength, and endurance—and celebrates the essence of competition. The olympics then becomes a story of human potential at its peak.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>What comes after nationalism?</title>
+        <published>2024-11-24T00:00:00+00:00</published>
+        <updated>2024-11-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/what-comes-after-nationalism/"/>
+        <id>https://frankhampusweslien.com/posts/what-comes-after-nationalism/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/what-comes-after-nationalism/">&lt;p&gt;The nation state as we know it today emerged during the 1800s. Before that, especially in Europe, people didn’t really think of themselves as part of “nations” - they belonged to their local village, their church, or maybe pledged loyalty to a distant monarch. But then came the age of new technologies: mass-printed newspapers, railways connecting distant cities, and later radio and the telegraph. These tools made it possible to imagine a bigger “we” - the nation state was born.&lt;&#x2F;p&gt;
+&lt;p&gt;This transformation wasn’t just technological - it was driven by leaders who saw the potential. Giuseppe Mazzini preached Italian unity, while Bismarck forged Germany through “blood and iron.” In France, the revolution had already planted the seeds of national identity, which Napoleon III would later cultivate. These leaders used new communication tools to spread national myths, standardize languages, and create the shared stories that made people feel part of something bigger than their local community.&lt;&#x2F;p&gt;
+&lt;p&gt;Ever since John Perry Barlow’s &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.eff.org&#x2F;cyberspace-independence&quot;&gt;“Declaration of Independence of Cyberspace”&lt;&#x2F;a&gt; in 1996, we’ve seen hints of what might come next. The 21st century brings its own revolutionary technologies: the borderless internet, blockchain, peer-to-peer networks, and global social media. But perhaps the most powerful “technology” of all is the emergence of English as a global lingua franca - for the first time in history, humans across the planet can easily communicate in a shared language. Combine this with instant translation tools, and we’re rapidly breaking down the last remaining barriers to global understanding.&lt;&#x2F;p&gt;
+&lt;p&gt;We’re already seeing glimpses of this post-national identity: digital nomads who feel more connected to their online communities than their physical locations, global movements like climate activism that transcend borders, and international collaborations in science and art that ignore national boundaries. The rise of remote work means your closest colleagues might live on different continents.&lt;&#x2F;p&gt;
+&lt;p&gt;These aren’t just tools or trends - they’re the building blocks of something bigger. They’re letting us construct an even larger “we” - perhaps the final “we”: humanity itself. This isn’t just idealistic thinking - it’s a practical response to challenges that don’t respect national borders: climate change, pandemics, artificial intelligence, and space exploration all require global cooperation and a species-level perspective.&lt;&#x2F;p&gt;
+&lt;p&gt;We’re living through this transformation right now, which makes it hard to see the full picture. Just like a French peasant in 1800 couldn’t imagine identifying with someone hundreds of miles away in Paris, we might struggle to grasp how technology is rewiring our sense of belonging on a global scale.&lt;&#x2F;p&gt;
+&lt;p&gt;Sure, there are still many questions to answer about what a post-national world might look like. But perhaps the most compelling argument for moving beyond nationalism is this: throughout history, nothing has been more destructive than wars between nation states - conflicts built on artificial divisions between people who share the same hopes, fears, and dreams. As these old boundaries blur and dissolve in the digital age, maybe we’ll finally see that the deadliest conflicts in human history were fought over lines drawn on maps that never mattered in the first place.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Public Money, Public Code</title>
+        <published>2024-11-11T00:00:00+00:00</published>
+        <updated>2024-11-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/public-money-public-code/"/>
+        <id>https://frankhampusweslien.com/posts/public-money-public-code/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/public-money-public-code/">&lt;p&gt;When your tax money funds software development, shouldn’t you get to see and use what you paid for? It’s a simple idea: if the public pays for it, the public should own it.&lt;&#x2F;p&gt;
+&lt;p&gt;Sweden has roughly 300 municipalities, 20 regions, and one state government. Each builds or buys their own software, often solving the same problems hundreds of times over. Imagine if instead:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Every municipality shared a common, open-source website template&lt;&#x2F;li&gt;
+&lt;li&gt;Healthcare systems actually talked to each other&lt;&#x2F;li&gt;
+&lt;li&gt;Public transit apps worked across regional borders&lt;&#x2F;li&gt;
+&lt;li&gt;Building permits were handled through the same streamlined system&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;We’re not dreaming big enough. Look at Britain’s GOV.UK - a unified design system and platform that makes government services accessible and consistent. Or Estonia’s X-Road, which connects their entire digital government infrastructure.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-vision&quot;&gt;The Vision&lt;&#x2F;h2&gt;
+&lt;p&gt;Picture a GitHub organization called “SwedenPublic”. Inside, you’d find:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;A municipal website template that any kommun can fork and customize&lt;&#x2F;li&gt;
+&lt;li&gt;A standardized API for public transit data&lt;&#x2F;li&gt;
+&lt;li&gt;Shared components for everything from e-services to permit applications&lt;&#x2F;li&gt;
+&lt;li&gt;Security-audited libraries for common government needs&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;When Malmö develops a better way to handle building permits, Umeå can benefit immediately. When Stockholm creates an improved snow plow tracking system, Göteborg can deploy it before next winter.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;beyond-borders&quot;&gt;Beyond Borders&lt;&#x2F;h2&gt;
+&lt;p&gt;Why stop at Sweden? The challenges of local government aren’t unique to us. A Norwegian kommun faces the same basic needs as a Swedish one. The same goes for Denmark, Finland, or Germany.&lt;&#x2F;p&gt;
+&lt;p&gt;This isn’t just about saving money - though we’d save billions. It’s about building better tools, faster. It’s about transparency. It’s about working together instead of reinventing wheels in 300 different municipalities.&lt;&#x2F;p&gt;
+&lt;p&gt;The code is already paid for. Let’s make it work for everyone.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Why you should long to do, not just to have done.</title>
+        <published>2024-08-24T00:00:00+00:00</published>
+        <updated>2024-08-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/long-to-do/"/>
+        <id>https://frankhampusweslien.com/posts/long-to-do/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/long-to-do/">&lt;p&gt;When I was young, I played the guitar—or at least, I tried to.
+I dreamed of being a rock star, but I didn’t want to practice.
+Without putting in the necessary time and effort, I was a terrible student who made little progress.
+I was too focused on the end goal rather than enjoying the journey.&lt;&#x2F;p&gt;
+&lt;p&gt;Fast forward to my twenties, and I decided to learn how to paint.
+This time, I approached things differently.
+I dedicated a significant amount of time to practice, but more importantly,
+I shifted my focus from the end result to the process itself.
+By concentrating on the act of painting rather than worrying about becoming a great painter, I improved rapidly.
+With each brushstroke, I learned something new, and my skills grew.
+It didn’t take long before I exceeded my own expectations. It felt amazing.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, this is only one part of the puzzle.
+You also need to incorporate &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Practice_(learning_method)#Deliberate_practice&quot;&gt;deliberate practice&lt;&#x2F;a&gt;.
+I drilled the basics, like drawing boxes and doing studies, over and over again.
+Boring? Yes. Necessary? Absolutely.&lt;&#x2F;p&gt;
+&lt;p&gt;But here’s the thing: to stay motivated enough to do all that repetitive, often boring work, you have to focus on the process.
+If you want to learn to paint—or pursue any creative endeavor—you must learn to enjoy the journey, not just the destination.
+As you gain skill, activities like painting, dancing, or playing music become more enjoyable because you can create more complex and interesting things.
+However, the core of what you’re doing remains the same.
+Whether you’re a beginner or a master, you still sit down with your brushes, mix your paints, and apply them to the canvas.
+The process is 99% the same, regardless of your level of skill.&lt;&#x2F;p&gt;
+&lt;p&gt;So, if you’re serious about getting good at something, focus on the process.
+Long to do, not just to have done. Embrace the repetitive, the mundane, and the challenging parts of the journey.
+Love the process, and the end results will follow.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;PS: You can find some of my art on my &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.instagram.com&#x2F;frankhampusweslien&#x2F;?next=%2F&quot;&gt;Instagram&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The Plain Text Wiki</title>
+        <published>2024-08-16T00:00:00+00:00</published>
+        <updated>2024-08-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/the-plain-text-wiki/"/>
+        <id>https://frankhampusweslien.com/posts/the-plain-text-wiki/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/the-plain-text-wiki/">&lt;p&gt;Every company I’ve worked for has had an internal wiki for essential information, like how to take sick leave, understand the harassment policy, and access other common procedures. Tools like Confluence and SharePoint are popular for this purpose. But what if we took a different approach and used plain text, hosting everything in a Git repository?&lt;&#x2F;p&gt;
+&lt;p&gt;Imagine a single repository dedicated to your internal wiki that you can pull down and explore using &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;Obsidian&lt;&#x2F;a&gt;, a powerful note-taking and knowledge management app that stores everything in plain markdown. Not only could you view the content, but you could also easily edit it with Obsidian’s WYSIWYG editor. Avoiding reliance on corporate tools offers significant advantages. When everything is in plain text, you can easily feed it into an LLM to get answers to questions about sick leave or pension plans. Or, if you need to extract some information, you can simply write a Python script. Plus, you can still use your favorite command-line tools like &lt;code&gt;sed&lt;&#x2F;code&gt;, &lt;code&gt;grep&lt;&#x2F;code&gt;, and &lt;code&gt;find&lt;&#x2F;code&gt;. If you want users to have read-only access, you could host the wiki on a subdomain, making it widely accessible while maintaining a detailed history of all changes.&lt;&#x2F;p&gt;
+&lt;p&gt;While this approach might not be ideal for most companies, I’d consider it, especially in the early stages when it’s acceptable for only the technical team to manage updates. As the company grows and more people join, for whom learning Git might be too much to ask, we could write a script to push the wiki into a more user-friendly tool.&lt;&#x2F;p&gt;
+&lt;p&gt;The larger takeaway is that storing data in a simple format makes it easy to adapt to new situations. If you hand your data over to another company’s tool, you risk getting locked in, making it harder for you and your team to adapt to changing needs.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Note: The inspiration for this blog post came from the excellent YouTube channel &lt;em&gt;No Boilerplate&lt;&#x2F;em&gt; and his video on &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=WgV6M1LyfNY&quot;&gt;The Unreasonable Effectiveness of Plain Text&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Be a creator</title>
+        <published>2024-07-21T00:00:00+00:00</published>
+        <updated>2024-07-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/be-a-creator/"/>
+        <id>https://frankhampusweslien.com/posts/be-a-creator/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/be-a-creator/">&lt;p&gt;In a world where Netflix, YouTube, and social media constantly vie for our attention, creation offers a way out. The internet, once a boundless creative space, has been split into walled gardens and algorithmically enhanced to capture our focus. You’ve probably found yourself an hour into the future after accidentally opening TikTok, feeling like you’ve wasted time. The solution is to create.&lt;&#x2F;p&gt;
+&lt;p&gt;My creative journey began at 20 when I realized that I was in control.
+If I want to eat pancakes every day, I can; I just choose not to.
+Initially, I procrastinated, and it was difficult to pick up the habit of creation.
+My GitHub is filled with unfinished projects from my university days, but as my skills grew and the hours piled up, I managed to ignite the fire of creation.
+At first, it was weak and easily extinguished, but as I fueled it by dedicating an hour each day to painting, it became strong.
+Very strong. I’ve recently learned to have a bucket of water on hand to prevent it from spreading uncontrollably.&lt;&#x2F;p&gt;
+&lt;p&gt;Creation brings lasting satisfaction, especially when shared. Cooking and baking are perfect for this and a fantastic opportunity to bring friends and family together. It also lets them give you compliments; nothing is more motivating. Creative things that double as gifts hold a special place in my heart. I’m not a fan of a gift culture built on consumerism and I’m easily bribed with homemade cookies.&lt;&#x2F;p&gt;
+&lt;p&gt;What will you create? Anything goes! Grilling a steak can be as beautiful as poetry if done with passion. Though different activities have varying skill ceilings, valuing intellectual pursuits over practical skills is flawed. Life is much more beautiful when we view both as acts of creation. I’ve shifted from a passive consumer into an engaged creator: be a creator.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Transforming Package Management into a Package Marketplace</title>
+        <published>2024-06-15T00:00:00+00:00</published>
+        <updated>2024-06-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/opensource-marketplace/"/>
+        <id>https://frankhampusweslien.com/posts/opensource-marketplace/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/opensource-marketplace/">&lt;h4 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h4&gt;
+&lt;p&gt;In the world of software development, open-source tools and libraries play a critical role. Yet, the model under which these tools are distributed and maintained often needs to be revised. The “tragedy of the commons” is a prevalent issue, where large enterprises benefit immensely from open-source software without contributing back to its development or maintenance. I believe the issue is the lack of a package marketplace. What if package management tools like Cargo, NPM, and PIP integrated payments directly?&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;the-current-problem&quot;&gt;The Current Problem&lt;&#x2F;h4&gt;
+&lt;p&gt;Open-source software (OSS) is foundational to modern software development. However, its free nature often leads to exploitation, particularly by large enterprises that gain significant value without proportional contributions. This imbalance causes numerous problems:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sustainability:&lt;&#x2F;strong&gt; Developers maintaining popular open-source projects often do so without compensation, leading to burnout and abandoned projects.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Quality and Security:&lt;&#x2F;strong&gt; Volunteer-maintained projects might lack rigorous quality checks, leading to potential security vulnerabilities and unreliable updates.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Innovation Stagnation:&lt;&#x2F;strong&gt; When developers cannot monetize their work, it reduces the incentive to innovate and improve their projects.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;what-if-packages-were-like-a-store&quot;&gt;What If Packages Were Like a Store?&lt;&#x2F;h4&gt;
+&lt;p&gt;Imagine a world where downloading packages via tools like Cargo was akin to shopping in an app store. Here’s how this could address the current issues:&lt;&#x2F;p&gt;
+&lt;h5 id=&quot;benefits&quot;&gt;Benefits&lt;&#x2F;h5&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Elimination of Problems like Core-js:&lt;&#x2F;strong&gt; By monetizing packages, developers would be compensated for their time and effort, reducing the likelihood of critical packages becoming unsupported.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Diversity and Competition:&lt;&#x2F;strong&gt; A package marketplace would encourage more developers to create and maintain packages, fostering a diverse and competitive ecosystem.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Fair Compensation:&lt;&#x2F;strong&gt; Large companies benefiting from open-source packages would be required to pay for the value they receive, ensuring a fair distribution of resources.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Improved Security:&lt;&#x2F;strong&gt; With financial incentives, developers would have more resources to invest in thorough testing and security measures, leading to more secure packages.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Documentation and Developer Experience (DevX):&lt;&#x2F;strong&gt; Monetization would increase the emphasis on high-quality documentation and user experience, as developers would aim to attract and retain paying users.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h4 id=&quot;potential-challenges&quot;&gt;Potential Challenges&lt;&#x2F;h4&gt;
+&lt;p&gt;Implementing a package marketplace model for packages will not be without challenges. Key considerations include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Community Resistance:&lt;&#x2F;strong&gt; The open-source community values the freedom and accessibility of current models. Balancing these values with monetization will require careful handling and transparent communication.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Transition Period:&lt;&#x2F;strong&gt; Shifting from a free to a paid model might be met with resistance from both developers and enterprises. Phased implementation and clear articulation of benefits will be essential to ease this transition.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Economic Disparities:&lt;&#x2F;strong&gt; Ensuring that the pricing structure is fair and does not disadvantage smaller companies or individual developers is crucial. This might require tiered pricing models and thoughtful license structuring. Potential licensing structures include:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pay per Project:&lt;&#x2F;strong&gt; Charges based on the number of projects using the package.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Pay Once:&lt;&#x2F;strong&gt; A one-time fee for lifetime access to the package.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Pay per Major Release:&lt;&#x2F;strong&gt; Fees applicable for each major update or version released, ensuring ongoing support and development.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Scaling Fees:&lt;&#x2F;strong&gt; Different pricing for small startups versus large enterprises to ensure fairness.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Service Level Agreements (SLA):&lt;&#x2F;strong&gt; Offering premium support and guaranteed updates for a higher fee.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Integration with Existing Ecosystems:&lt;&#x2F;strong&gt; Ensuring compatibility with existing open-source tools and workflows is crucial for adoption. This might involve creating seamless integrations and offering migration tools to facilitate the switch to the new model.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Community and Ecosystem Building:&lt;&#x2F;strong&gt; Cultivating a community around this new model is crucial. Developers need to see the value in monetizing their work, and companies need to understand the long-term benefits of contributing financially to the open-source ecosystem.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h4&gt;
+&lt;p&gt;The open-source community stands at a crossroads. By reimagining package management as a package marketplace, we can create a healthier, more sustainable ecosystem. This approach not only addresses the “tragedy of the commons” but also incentivizes innovation, security, and quality. It’s time to rethink how we value and sustain the software that underpins our digital world.&lt;&#x2F;p&gt;
+&lt;p&gt;To bring this vision to life, we need a visionary to develop a new language or package manager with payment as a core feature. Perhaps that someone is you? You won’t need to worry about me; I’ve already got plenty on my plate!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Discover History Like Never Before: Timeline&#x27;s 3.3 Million Events Update!</title>
+        <published>2024-05-27T00:00:00+00:00</published>
+        <updated>2024-05-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/timeline-version-one/"/>
+        <id>https://frankhampusweslien.com/posts/timeline-version-one/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/timeline-version-one/">&lt;p&gt;Hello, history enthusiasts!&lt;&#x2F;p&gt;
+&lt;p&gt;I’m thrilled to announce the release of the 3.3 million events version of &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;timeline.frankhampusweslien.com&#x2F;&quot;&gt;timeline&lt;&#x2F;a&gt;! Dive into world history in a fun and interactive way by guessing the order of historical events.&lt;&#x2F;p&gt;
+&lt;p&gt;About 2 months ago, I embarked on this project with the goal of creating an engaging way to learn about the history of the world. You can read more about my initial motivation in my &lt;a href=&quot;https:&#x2F;&#x2F;frankhampusweslien.com&#x2F;posts&#x2F;timeline-trying-to-break-the-internet&#x2F;&quot;&gt;previous post&lt;&#x2F;a&gt;. Since then, I’ve worked tirelessly to add new features and improve the game, navigating through numerous challenges and redesigns.&lt;&#x2F;p&gt;
+&lt;p&gt;Initially, I experimented with generating events using AI, but the results were inconsistent. My second attempt involved using the Wikidata SPARQL endpoint, which proved limited. Finally, inspired by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wikitrivia.tomjwatson.com&#x2F;&quot;&gt;Wikitrivia&lt;&#x2F;a&gt;, I downloaded events directly from Wikidata, allowing me to extract a staggering 3.3 million events!&lt;&#x2F;p&gt;
+&lt;p&gt;While my game shares similarities with Wikitrivia, there are key differences. Wikitrivia has a limited number of events and lacks a tagging system. To address this, I introduced tags and year ranges, enabling players to filter events and create a more personalized experience.&lt;&#x2F;p&gt;
+&lt;p&gt;My greatest achievement with this project is staying true to my vision: creating a fun and interactive way to learn about world history. I’m incredibly proud of the final product and hope you enjoy playing it as much as I enjoyed creating it.&lt;&#x2F;p&gt;
+&lt;p&gt;Play &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;timeline.frankhampusweslien.com&#x2F;&quot;&gt;timeline&lt;&#x2F;a&gt; and let me know your thoughts. Happy learning!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Exercising for life</title>
+        <published>2024-04-11T00:00:00+00:00</published>
+        <updated>2024-04-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/exercising-for-life/"/>
+        <id>https://frankhampusweslien.com/posts/exercising-for-life/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/exercising-for-life/">&lt;p&gt;Exercise is a big part of my life. I’ve always exercised since they days my parent enrolled me in the local soccer team.
+But recently I’ve started to think about it in a different way. Like something that is necessary for my survival.
+How do I make sure that I exercise until the day I die? I see only one option: make it fun.&lt;&#x2F;p&gt;
+&lt;p&gt;In my teens I played a lot of handball. I loved the sport and I was pretty good at it. But as I got older I started to lose interest in team sports. I started to go to the gym instead. It was convenient and fit well into my schedule at university but I never really enjoyed it. I did it because I had to, not because I wanted to.&lt;&#x2F;p&gt;
+&lt;p&gt;If I’m going to exercise until the day I die I need to make it fun. It would be irresponsible to spend such a ridiculous amount of time and not make it enjoyable. So I started trying things. I tried running, dancing, martial arts, and finally I found something that I really enjoy: climbing.&lt;&#x2F;p&gt;
+&lt;p&gt;Climbing is a great sport. It’s a full body workout (okay, perhaps not that hard on your legs) that is both physically and mentally challenging. It is great to do solo or in a group. It’s a great way to meet new people and it’s a great way to travel. I’ve been climbing for a two years and I still look forward to every session.&lt;&#x2F;p&gt;
+&lt;p&gt;I could push myself harder and aim for progress, but I’m in no rush. It’s a lifelong pursuit. I plan to exercise until I die so I’m gonna make damn sure I enjoy it.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Love tools, hate workflows!</title>
+        <published>2024-04-11T00:00:00+00:00</published>
+        <updated>2024-04-11T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/tools-vs-wokflows/"/>
+        <id>https://frankhampusweslien.com/posts/tools-vs-wokflows/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/tools-vs-wokflows/">&lt;p&gt;You can divide the world of software into two categories: tools, and workflows. Workflows are your enterprise software, your Jira, and your Salesforce. Tools are your text editors, your git, and your terminal.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is a simple way to differentiate between the two:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tools are used to create things.&lt;&#x2F;li&gt;
+&lt;li&gt;Workflows are used to manage things.&lt;&#x2F;li&gt;
+&lt;li&gt;Tools are used by creators.&lt;&#x2F;li&gt;
+&lt;li&gt;Workflows are used by managers.&lt;&#x2F;li&gt;
+&lt;li&gt;Tools are used to build.&lt;&#x2F;li&gt;
+&lt;li&gt;Workflows are used to organize.&lt;&#x2F;li&gt;
+&lt;li&gt;…&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The list goes on.&lt;&#x2F;p&gt;
+&lt;p&gt;The ultimate goal of a tool is for you to forget that it’s there. You should be able to focus on your work, not the tool. The ultimate goal of a workflow is making sure that everyone is on the same page. It’s about making sure that everyone is following the same process.&lt;&#x2F;p&gt;
+&lt;p&gt;I hate workflows.
+I hate them with a passion.
+I hate them because they are a necessary evil we use to extract the final bit of productivity from our employees.
+I hate them because they are the reason why we have to fill out forms, attend meetings, and write reports.&lt;&#x2F;p&gt;
+&lt;p&gt;I love tools.
+I love them because they are the reason why we can build amazing things.
+I love them because they empower us all to be creators who can get more stuff done in less time.
+I love them because they are the reason why we can create art, music, and literature.&lt;&#x2F;p&gt;
+&lt;p&gt;Make tools, not workflows.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>GLOW: releasing a game on steam!</title>
+        <published>2024-04-09T00:00:00+00:00</published>
+        <updated>2024-04-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/glow/"/>
+        <id>https://frankhampusweslien.com/posts/glow/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/glow/">&lt;p&gt;Hello, people of the internet!&lt;&#x2F;p&gt;
+&lt;p&gt;I’m in the middle of releasing a game on Steam called &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;store.steampowered.com&#x2F;app&#x2F;2896110&#x2F;GLOW&#x2F;&quot;&gt;GLOW&lt;&#x2F;a&gt;. Here is the description directly from the Steam page:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“&lt;em&gt;GLOW is an addictive physics-based arcade game that will challenge you to your limits. Push, dodge, and trick enemies while collecting points as the difficulty increases.&lt;&#x2F;em&gt;”&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I know what you are thinking: what is the tech stack? Well, I’m glad you asked! The game is built using the &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;bevyengine.org&#x2F;&quot;&gt;Bevy&lt;&#x2F;a&gt; game engine and written in Rust!&lt;&#x2F;p&gt;
+&lt;p&gt;Here are some of the current pros and cons of using bevy:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pros:
+&lt;ul&gt;
+&lt;li&gt;Rust&lt;&#x2F;li&gt;
+&lt;li&gt;Fast&lt;&#x2F;li&gt;
+&lt;li&gt;Static typing&lt;&#x2F;li&gt;
+&lt;li&gt;Free&lt;&#x2F;li&gt;
+&lt;li&gt;Open-source&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Cons:
+&lt;ul&gt;
+&lt;li&gt;Documentation&lt;&#x2F;li&gt;
+&lt;li&gt;The community is small but very helpful&lt;&#x2F;li&gt;
+&lt;li&gt;Tutorials are scarce&lt;&#x2F;li&gt;
+&lt;li&gt;Compile times&lt;&#x2F;li&gt;
+&lt;li&gt;Unstable API&lt;&#x2F;li&gt;
+&lt;li&gt;UI is hard&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The main pain points for me have been that Bevy currently has a very lackluster UI system as of &lt;code&gt;0.13.1&lt;&#x2F;code&gt;. I know there are plans to improve this in the future but for now, it’s a bit of a pain to work with. I’m also losing a lot of time due to lack of hot reloading but that is partly my fault. They recommend not using the release flag in development. Though, since my game is rather simple it hasn’t been a deal breaker. Most of the time I make rather large changes in which case you do not compile that often anyway.&lt;&#x2F;p&gt;
+&lt;p&gt;The biggest boons for me have been the speed of the engine and the fact that it’s written in Rust. I have been able to write a lot of the game logic in a very safe way. The ESC system is wonderful, combined with algebraic data types, and treating errors as values I have been able to write very robust code.&lt;&#x2F;p&gt;
+&lt;p&gt;On a personal note, I’ve noticed that I’m gravitating towards tools that are code first. Bevy doesn’t have an editor, instead, everything is written in code. Of course, some things are better done in an editor but programming is my main skill so I’m happy to see this trend.
+Instead of learning how to use an editor I can reuse my programming skills.
+A few other tools that are also code-first are &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.manim.community&#x2F;&quot;&gt;Manim&lt;&#x2F;a&gt;, &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;motioncanvas.io&#x2F;&quot;&gt;Motion Canvas&lt;&#x2F;a&gt;, and &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;glicol.org&#x2F;&quot;&gt;Glicol&lt;&#x2F;a&gt;.
+Here is an example of a YouTube short I made about &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;shorts&#x2F;fVKpYgH_Nz0&quot;&gt;9-slicing images&lt;&#x2F;a&gt; made with Motion Canvas.&lt;&#x2F;p&gt;
+&lt;p&gt;I’m excited to see where this trend will take us! In the meantime, I hope you will check out my game &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;store.steampowered.com&#x2F;app&#x2F;2896110&#x2F;GLOW&#x2F;&quot;&gt;GLOW&lt;&#x2F;a&gt; on Steam.&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;Cheers&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Timeline: Trying to break the internet!</title>
+        <published>2024-04-09T00:00:00+00:00</published>
+        <updated>2024-04-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/timeline-trying-to-break-the-internet/"/>
+        <id>https://frankhampusweslien.com/posts/timeline-trying-to-break-the-internet/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/timeline-trying-to-break-the-internet/">&lt;p&gt;Hello, people of the internet!&lt;&#x2F;p&gt;
+&lt;p&gt;Most likely you stumbled upon this page from playing my game &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;timeline.frankhampusweslien.com&#x2F;&quot;&gt;timeline&lt;&#x2F;a&gt; in which case: welcome! I hope you enjoy the game and that you learn something new about the history of the world. For you that didn’t come from the game, I hope you will enjoy the game as well! It’s a fun little project I made where you can learn about the history of the world in a fun and interactive way by guessing the order of historical events.&lt;&#x2F;p&gt;
+&lt;p&gt;How would a simple web game break the internet you might ask? Well, it probably won’t. But I do believe I have a unique insight.&lt;&#x2F;p&gt;
+&lt;p&gt;The web, and especially large social media websites like Reddit, is organized into sub-cultures. For example, there is a specific sub on Reddit for pretty much every country. The Swedish sub is called &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;sweden&#x2F;&quot;&gt;r&#x2F;sweden&lt;&#x2F;a&gt; and has as of writing 0.7 million members. There is pretty much an infinite number of these subs and they all have their own rules and culture. The insight is that I can create a unique version of the timeline for each of these subs. This would make the game more engaging and also make it more likely that the game would be shared and played by the users of the sub. This is the idea of breaking the internet. In a world of infinite fractal communities, I can create a unique version of the timeline for each of them.&lt;&#x2F;p&gt;
+&lt;p&gt;Right now I’m only two days into the project and I have already created a basic version. I’m excited to see where this project will take me and I hope you will follow along!&lt;&#x2F;p&gt;
+&lt;p&gt;You can play timeline here: &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;timeline.frankhampusweslien.com&#x2F;&quot;&gt;timeline&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;Cheers&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>My new website</title>
+        <published>2022-12-25T00:00:00+00:00</published>
+        <updated>2022-12-25T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://frankhampusweslien.com/posts/my-new-website/"/>
+        <id>https://frankhampusweslien.com/posts/my-new-website/</id>
+        
+        <content type="html" xml:base="https://frankhampusweslien.com/posts/my-new-website/">&lt;p&gt;Hello, people of the internet!&lt;&#x2F;p&gt;
+&lt;p&gt;This is the third iteration of my website.
+I wanted to put a larger focus on my open-source contributions so there is now
+a &lt;a href=&quot;&#x2F;projects&quot;&gt;projects&lt;&#x2F;a&gt; tab. You’ll find all the NFTs I minted and sold in 2021 at
+&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;nft.frankhampusweslien.com&#x2F;&quot;&gt;https:&#x2F;&#x2F;nft.frankhampusweslien.com&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&#x2F;Cheers&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

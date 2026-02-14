@@ -26,6 +26,10 @@ Personal blog and portfolio of Frank Hampus Weslien. Posts cover programming, te
 
 Help write and publish new blog posts, update projects, and perform other site maintenance tasks. When creating new posts, follow the existing front matter conventions in `content/posts/`.
 
+## Deployment
+
+Pushing to `master` automatically deploys a new version of the website via GitHub Pages.
+
 ## Workflow
 
 - Build the site locally: `zola build`

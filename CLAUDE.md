@@ -35,3 +35,5 @@ Pushing to `master` automatically deploys a new version of the website via GitHu
 - Build the site locally: `zola build`
 - Serve locally with live reload: `zola serve`
 - New posts go in `content/posts/` as `.md` files with Zola front matter
+- Work-in-progress articles go in `wip/` as plain `.md` files (outside `content/`, so Zola ignores them)
+- When a WIP article is ready to publish, move it to `content/posts/` and add Zola front matter
